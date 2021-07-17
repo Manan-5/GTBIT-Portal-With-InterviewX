@@ -1,0 +1,165 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<!DOCTYPE html>
+<html>
+  <title>Chatbot</title>
+  <head>
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="https://images.idgesg.net/images/article/2018/02/artificial_intelligence_ai_virtual_assistant_robot_chatbot_thinkstock_856909876-100749925-large.jpg"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <style>
+      body {
+        background-image:url(https://miro.medium.com/max/3960/1*wePl7h5pIOWFayxMTsGTxQ.jpeg);
+        background-size: cover;
+        font-family: cursive;
+        background-attachment: fixed;
+      }
+      .main{
+        position: relative;
+      }
+      .main-raised{
+        /* margin: 0rem 30px 0;
+          border-radius: 6px 6px 0 0;
+          min-height: 45rem; */
+          box-shadow: 0 16px 24px 2px rgb(0 0 0 / 14%), 0 6px 30px 5px rgb(0 0 0 / 12%), 0 8px 10px -5px rgb(0 0 0 / 20%);
+          margin: 5rem 25px 2rem;
+          border-radius: 6px 6px 0 0;
+          min-height: 40rem;
+      }
+      h1 {
+        display: inline-block;
+        font-size: 3em;
+        margin: 0;
+        padding: 14px;
+      }
+      h3 {
+        color: black;
+        font-size: 20px;
+        margin-top: 3px;
+        text-align: center;
+      }
+      #chatbox {
+        margin-left: auto;
+        margin-right: auto;
+        width: 40%;
+        margin-top: 60px;
+        min-height: 10rem;
+      }
+      #userInput {
+        margin-left: auto;
+        margin-right: auto;
+        width: 40%;
+        margin-top: 60px;
+      }
+      #textInput {
+        width: 80% ;
+        border: 2px solid;
+        margin-right: 250px;
+        margin-left: 50px;
+        margin-bottom: 50px;
+        margin-top: 50px;
+        border-bottom: 2px solid black;
+        font-family: sans-serif;
+        font-size: 25px;
+      }
+      .userText {
+        color: white;
+        font-family: monospace;
+        font-size: 17px;
+        text-align: right;
+        line-height: 30px;
+      }
+      .userText span {
+        background-color: #808080;
+        padding: 10px;
+        border-radius: 2px;
+        font-weight: bolder
+      }
+      .botText {
+        color: white;
+        font-family: monospace;
+        font-size: 17px;
+        text-align: left;
+        line-height: 30px;
+      }
+      .botText span {
+        background-color: #4169e1;
+        padding: 10px;
+        border-radius: 2px;
+        font-weight: bolder
+      }
+      #tidbit {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 300px;
+      }
+      .boxed {
+        margin-left: auto;
+        margin-right: auto;
+        width: 78%;
+        margin-top: 60px;
+        border: transparent;
+      }
+      
+
+
+    </style>
+  </head>
+  <body>
+    <div class="main main-raised" style="display: block;">
+    <img />
+    <center>
+      <h1>
+        GTBIT Portal Chatbot
+      </h1>
+    </center>
+    <h3>
+      <p>
+        Chatbot is ready to help you!! Go ask your questions...
+      </p>
+    </h3>
+    <div class="box"></div>
+    <div class="boxed">
+      <div>
+        <div id="chatbox">
+          <p class="botText">
+            <span>Hi! I'm GTBIT-Bot </span>
+          </p>
+        </div>
+        <div id="userInput">
+          <input id="textInput" type="text" name="msg" placeholder="Enter your query here..." />
+        </div>
+      </div>
+      <script>
+        function getBotResponse() {
+          var rawText = $("#textInput").val();
+          var userHtml = '<p class="userText"><span>' + rawText + "</span></p>";
+          $("#textInput").val("");
+          $("#chatbox").append(userHtml);
+          document
+            .getElementById("userInput")
+            .scrollIntoView({ block: "start", behavior: "smooth" });
+          $.get("/get", { msg: rawText }).done(function(data) {
+            var botHtml = '<p class="botText"><span>' + data + "</span></p>";
+            $("#chatbox").append(botHtml);
+            document
+              .getElementById("userInput")
+              .scrollIntoView({ block: "start", behavior: "smooth" });
+          });
+        }
+        $("#textInput").keypress(function(e) {
+          if (e.which == 13) {
+            getBotResponse();
+          }
+        });
+      </script>
+    </div>
+  </div>
+  <!-- {% endblock %} -->
+  </body>
+</html>

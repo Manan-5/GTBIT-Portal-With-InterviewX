@@ -1,0 +1,92 @@
+{% extends "layout.html" %}
+{% block body %}
+
+    <!-- Page Header -->
+    {% set fname = 'img/' + internship.img_file %}
+    <header class="masthead" style="background-image: url('{{ url_for('static', filename=fname) }}')">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="post-heading">
+              <h1>{{internship.title}}</h1>
+              <h2 class="subheading">{{internship.tagline}}</h2>
+              <span class="meta">Posted by
+                <a href="#">Admin</a>
+                on {{internship.date}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <style>
+        .main{
+  position: relative;
+    background: #fff;
+ }
+ .main-raised{
+  margin: -100px 30px 0;
+    border-radius: 6px 6px 0 0;
+    /* -webkit-box-shadow: 0 16px 24px 2px rgb(0 0 0 / 14%), 0 6px 30px 5px rgb(0 0 0 / 12%), 0 8px 10px -5px rgb(0 0 0 / 20%); */
+    box-shadow: 0 16px 24px 2px rgb(0 0 0 / 14%), 0 6px 30px 5px rgb(0 0 0 / 12%), 0 8px 10px -5px rgb(0 0 0 / 20%);
+ }
+      </style>
+    </header>
+
+    <!-- Post Content -->
+    <div class="main main-raised" style="display: block;">
+    <article style="padding-top: 4rem;">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <h2 class="has-luminous-vivid-blue-color has-text-color">Description:</h2>
+            <p>{{internship.description}}</p>
+            <hr>
+            <h2 class="has-luminous-vivid-blue-color has-text-color">About:</h2>
+            <p>{{internship.content}}</p>
+            <hr>
+            <table class="table table-striped">
+              <tbody>
+                <tr>
+                
+                  <td>Location</td>
+                  <td>{{internship.location}}</td>
+                 
+                </tr>
+                <tr>
+                  
+                  <td>Profile</td>
+                  <td>{{internship.profile}}</td>
+                  
+                </tr>
+                <tr>
+                  
+                  <td>Salary(Estimated)</td>
+                  <td>{{internship.salary}}</td>
+                
+                </tr>
+              </tbody>
+            </table>
+            <hr>
+             
+            <h2 class="has-luminous-vivid-blue-color has-text-color" >Roles/Responsibilites:</h2>
+       
+            <p>
+
+             {{internship.roles}}
+            
+            </p>
+        
+            <hr>
+            <h2 class="has-luminous-vivid-blue-color has-text-color" >Skills Required:</h2>
+            <p>
+              {{internship.skills}}
+            </p>
+            <a href={{internship.button}} target="_blank">  <button class="btn btn-primary"> Apply Now</button></a>
+            <a href={{internship.referral}} target="_blank">  <button class="btn btn-primary float-right"> Ask for referral</button></a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+   {% endblock %}
+</div>
